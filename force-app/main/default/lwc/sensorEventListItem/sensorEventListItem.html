@@ -1,0 +1,55 @@
+<template>
+    <!-- Record Display -->
+    <template lwc:if={hasRecordView}>
+        <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+            <h3 class="slds-text-heading_small">{sensorEvent.Name}</h3>
+            <lightning-record-view-form
+                record-id={sensorEvent.Id}
+                object-api-name="Sensor_Event__c"
+            >
+                <div class="slds-box">
+                    <lightning-output-field field-name="X_Number__c">
+                    </lightning-output-field>
+                    <lightning-output-field field-name="Y_Number__c">
+                    </lightning-output-field>
+                    <lightning-output-field field-name="Z_Number__c">
+                    </lightning-output-field>
+                    <lightning-button label="Edit" title="Non-primary action" onclick={editFields} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </lightning-record-view-form>
+        </div>
+    </template>
+    <template lwc:if={hasRecordEdit}>
+        <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+            <h3 class="slds-text-heading_small">{sensorEvent.Name}</h3>
+            <lightning-record-edit-form
+                id="recordEditForm"
+                record-id={sensorEvent.Id}
+                object-api-name="Sensor_Event__c"
+            >
+                <lightning-messages></lightning-messages>
+                <lightning-input-field field-name="X_Number__c">
+                </lightning-input-field>
+                <lightning-input-field field-name="Y_Number__c">
+                </lightning-input-field>
+                <lightning-input-field field-name="Z_Number__c">
+                </lightning-input-field>
+                
+                <lightning-button
+                    type="submit"
+                    label="Update Record"
+                    class="slds-m-top_medium"
+                    onclick={editFields}
+                >
+                </lightning-button>
+            </lightning-record-edit-form>
+        </div>
+    </template>
+    
+
+
+
+
+
+
+</template>
