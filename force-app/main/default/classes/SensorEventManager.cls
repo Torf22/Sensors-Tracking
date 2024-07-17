@@ -8,7 +8,7 @@ global with sharing class SensorEventManager {
         Sensor_Event__c sensorEvent = [SELECT Id, Name, X_Number__c, Y_Number__c, Z_Number__c FROM Sensor_Event__c WHERE Id = :sensorEventId];
         delete sensorEvent;
     }
-  
+
     @HttpGet
     global static Sensor_Event__c doGet() {
         RestRequest request = RestContext.request;
@@ -17,11 +17,10 @@ global with sharing class SensorEventManager {
         Sensor_Event__c result = [SELECT Id, Name, X_Number__c, Y_Number__c, Z_Number__c FROM Sensor_Event__c WHERE Id = :sensorEventId];
         return result;
     }
-  
-  @HttpPost
-    global static String doPost(String name, Integer x, Integer y, Integer z) {
-            Sensor_Event__c sensorEvent = new Sensor_Event__c(sensorEvent.Name = name, X_Number__c = , Y_Number__c = , Z_Number__c = );
-            ;
+
+    @HttpPost
+    global static Id doPost(String name, String sensorId, Integer x, Integer y, Integer z) {
+        Sensor_Event__c sensorEvent = new Sensor_Event__c(Name = name, Sensor__c = sensorId, X_Number__c = x, Y_Number__c = y, Z_Number__c = z); 
         insert sensorEvent;
         return sensorEvent.Id;
     }
