@@ -4,16 +4,21 @@ import getSensorEventTileList from '@salesforce/apex/sensorController.getSensorE
 
 export default class SensorTracker extends LightningElement {
     selectedSensor;
-    @track hasSensorEvents;
-    @track sensorEvents;
+    hasSensorEvents;
+    sensorEvents;
     sensorId;
+    pageSize;
     pageNumber = 1;
+    totalItemCount = 0;
     @wire(getSensorList)
     sensors;
     @wire(getSensorEventTileList, { sensorId: '$sensorId', pageNumber: '$pageNumber' })
     wiredSensorEvents({ error, data }) {
         if (data) {
             this.sensorEvents = data.records;
+            this.totalItemCount = data.totalItemCount;
+            this.pageNumber = data.pageNumber;
+            this.pageSize = data.pageSize;
             if (this.selectedSensor) {
                 this.hasSensorEvents = true;
             }
