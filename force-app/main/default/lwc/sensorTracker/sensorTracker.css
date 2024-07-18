@@ -1,0 +1,17 @@
+.slds-col {
+    background: rgb(243, 242, 242);
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+}
+c-sensor-list-item {
+    display: block;
+    margin: 0 0.5rem 0.3rem 0.5rem;
+}
+
+c-sensor-event-list-item {
+    min-width: 400px;
+    flex: 1;
+}

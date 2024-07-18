@@ -49,7 +49,6 @@ private class SensorEventManagerTest {
         Sensor_Event__c fetchedEvent = SensorEventManager.doGet();
         Test.stopTest();
 
-        // Verify that the correct record was fetched
         System.assertNotEquals(null, fetchedEvent);
         System.assertEquals(existingEvent.Id, fetchedEvent.Id);
     }
@@ -73,7 +72,6 @@ private class SensorEventManagerTest {
         ID updatedEventId = SensorEventManager.upsertSensorEvent('Updated Event', existingEvent.Id, 400, 500, 600);
         Test.stopTest();
 
-        // Verify that the record was updated
         Sensor_Event__c updatedEvent = [SELECT Id, Name, X_Number__c, Y_Number__c, Z_Number__c FROM Sensor_Event__c WHERE Id = :updatedEventId];
         System.assertEquals('Updated Event', updatedEvent.Name);
         System.assertEquals(400, updatedEvent.X_Number__c);
@@ -96,7 +94,6 @@ private class SensorEventManagerTest {
         SensorEventManager.doDelete();
         Test.stopTest();
 
-        // Verify that the record was deleted
         List<Sensor_Event__c> deletedListEvents = [SELECT Id FROM Sensor_Event__c WHERE Id = :existingEvent.Id AND isDeleted = TRUE ALL ROWS];
         System.assertEquals(1, deletedListEvents.size());
     }

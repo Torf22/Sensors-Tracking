@@ -1,11 +1,11 @@
 <template>
-    <!-- Record Display -->
     <template lwc:if={hasRecordView}>
-        <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+        <div class="slds-p-bottom_large slds-p-left_large">
             <h3 class="slds-text-heading_small">{sensorEvent.Name}</h3>
             <lightning-record-view-form
                 record-id={sensorEvent.Id}
                 object-api-name="Sensor_Event__c"
+                density="compact"
             >
                 <div class="slds-box">
                     <lightning-output-field field-name="X_Number__c">
@@ -20,12 +20,13 @@
         </div>
     </template>
     <template lwc:if={hasRecordEdit}>
-        <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+        <div class="slds-p-bottom_large slds-p-left_large">
             <h3 class="slds-text-heading_small">{sensorEvent.Name}</h3>
             <lightning-record-edit-form
                 id="recordEditForm"
                 record-id={sensorEvent.Id}
                 object-api-name="Sensor_Event__c"
+                density="compact"
             >
                 <lightning-messages></lightning-messages>
                 <lightning-input-field field-name="X_Number__c">
