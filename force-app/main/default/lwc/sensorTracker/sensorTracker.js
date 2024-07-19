@@ -41,6 +41,7 @@ export default class SensorTracker extends LightningElement {
 
         if (this.selectedSensor && this.sensorEvents) {
             this.hasSensorEvents = true;
+            this.pageNumber = 1;
         } else {
             this.hasSensorEvents = false;
         } 
