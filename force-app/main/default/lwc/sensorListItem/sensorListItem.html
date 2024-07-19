@@ -1,18 +1,25 @@
 <template>
-    <a href="#" onclick={handleClick}>
-        <lightning-layout vertical-align="center">
-        <lightning-layout-item padding="around-small">
-            <p>{sensor.Name}</p>
-        </lightning-layout-item>                      
-        </lightning-layout>
-    </a>
-    <template if:true={isOpen}>
-        <lightning-record-view-form
-                    id="recordEditForm"
-                    record-id={sensor.Id}
-                    object-api-name="Sensor__c"
-                >
-            <lightning-output-field field-name="Max_Vectors_Length__c"></lightning-output-field>
-        </lightning-record-view-form>
-    </template>
+    <li class="slds-accordion__list-item">
+        <section class="slds-accordion__section">
+            <div class="slds-accordion__summary">
+                <h2 class="slds-accordion__summary-heading">
+                    <button class="slds-button slds-button_reset slds-accordion__summary-action" aria-expanded="true" title="Accordion summary">
+                        <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                        </svg>
+                        <span class="slds-accordion__summary-content" onclick={handleClick}>{sensor.Name}</span>
+                    </button>
+                </h2>
+            </div>
+        </section>
+        <template if:true={isOpen}>
+            <lightning-record-view-form
+                id="recordEditForm"
+                record-id={sensor.Id}
+                object-api-name="Sensor__c"
+            >
+                <lightning-output-field field-name="Max_Vectors_Length__c"></lightning-output-field>
+            </lightning-record-view-form>
+        </template>
+    </li>
 </template>
