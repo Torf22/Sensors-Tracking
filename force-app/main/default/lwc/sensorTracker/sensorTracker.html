@@ -1,0 +1,78 @@
+<template>
+    <div class="slds-card">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_2-of-12">
+                <template lwc:if={sensors.data}>
+                    <!-- <lightning-layout-item title="Sensor List" > -->
+                        <ul class="slds-accordion">
+                            <template for:each={sensors.data} for:item="sensor">
+                                <c-sensor-list-item 
+                                    class="slds-show slds-is-relative"
+                                    key={sensor.Id}
+                                    sensor={sensor}
+                                    onselect={handleSelect}
+                                ></c-sensor-list-item>
+                            </template>
+                        </ul>
+                    <!-- </lightning-layout-item>     -->
+                </template>
+            </div>
+            <div class="slds-col slds-size_10-of-12">
+                <template lwc:if={hasSensorEvents}>
+                    <template lwc:if={sensorEvents.length}>
+                        <div class="content">
+                            <template for:each={sensorEvents} for:item="sensorEvent">
+                                <c-sensor-event-list-item 
+                                    key={sensorEvent.Id} 
+                                    class="slds-var-m-around_x-small"
+                                    sensor-event={sensorEvent}
+                                ></c-sensor-event-list-item>                                                 
+                            </template>
+                        </div>
+                    </template>
+                    <c-paginator
+                        page-number={pageNumber}
+                        page-size={pageSize}
+                        total-item-count={totalItemCount}
+                        onprevious={handlePreviousPage}
+                        onnext={handleNextPage}
+                    ></c-paginator>
+                </template>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- <lightning-card title="Sensor Tracker" icon-name="standard:list_fee">
+        <template lwc:if={sensors.data}>
+            <lightning-layout class="slds-var-m-around_medium">
+                <lightning-layout-item title="Sensor List" >
+                    <template for:each={sensors.data} for:item="sensor">
+                        <c-sensor-list-item 
+                            class="slds-show slds-is-relative"
+                            key={sensor.Id}
+                            sensor={sensor}
+                            onselect={handleSelect}
+                        ></c-sensor-list-item>
+                    </template>
+                </lightning-layout-item>
+                
+                <lightning-layout-item title="Sensor Event List" class="slds-var-m-left_medium">
+                    <template lwc:if={hasSensorEvents}>
+                        <template for:each={hasSensorEvents} for:item="sensorEvent">
+                            <c-sensor-event-list-item 
+                                key={sensorEvent.Id} 
+                                class="slds-grid slds-align_absolute-center"
+                                sensor-event={sensorEvent}
+                            ></c-sensor-event-list-item>                                                 
+                        </template>
+                    </template>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>       
+    </lightning-card>     -->
+</template>
